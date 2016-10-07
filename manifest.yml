@@ -1,0 +1,20 @@
+---
+declared-services:
+  conversation-service:
+    label: conversation
+    plan: free
+  tone-analyzer-standard:
+    label: tone_analyzer
+    plan: standard
+applications:
+- name: watson-food-coach-with-tone
+  command: npm start
+  path: .
+  instances: 1
+  memory: 512MB
+  services:
+  - conversation-service
+  - tone-analyzer-standard
+  env:
+    NPM_CONFIG_PRODUCTION: false
+

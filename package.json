@@ -1,0 +1,78 @@
+{
+  "name": "watson-food-coach",
+  "description": "A simple Node.js based web app which shows how to use the Conversation API to recognize user intents.",
+  "version": "0.1.1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test-unit": "istanbul cover ./node_modules/mocha/bin/_mocha ./test/unit",
+    "test-casper": "casperjs test ./test/test.webui.js",
+    "test-casper-runner": "NODE_ENV=test node casper-runner.js",
+    "test": "npm run lint && npm run test-unit && npm run test-casper-runner",
+    "lint": "eslint .",
+    "autofix": "eslint --fix .",
+    "validate": "npm ls"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "basic-auth-connect": "1.0.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "extend": "3.0.0",
+    "body-parser": "1.15.1",
+    "json-query": "2.1.0",
+    "twitter-node-client": "0.0.6",
+    "watson-developer-cloud": "^2.2.0",
+    "cloudant": "1.4.1",
+    "express-csv": "0.6.0",
+    "nano" : "*",
+    "uuid": "2.0.2",
+    "vcap_services": "^0.2.0",
+    "bluebird": "^3.4.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "casperjs": "^1.1.1",
+    "eslint": "^3.3.1",
+    "graceful-fs": "^4.1.6",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-iconfont": "^1.0.0",
+    "gulp-iconfont-css": "0.0.9",
+    "gulp-nodemon": "^2.0.2",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^3.0.2",
+    "phantomjs-prebuilt": "^2.1.12",
+    "run-sequence": "^1.2.2",
+    "supertest": "^2.0.0",
+    "wrench": "^1.5.9"
+  },
+  "engine": {
+    "node": ">= 4.2.4"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://watson-developer-cloud/food-couch.git"
+  },
+  "contributors": [
+    {
+      "name": "Vibha Sinha",
+      "email": "vibha.sinha@us.ibm.com"
+    },
+    {
+      "name": "April Webster",
+      "email": "awebster@us.ibm.com"
+    }
+  ],
+  "license": "Apache-2.0"
+}
