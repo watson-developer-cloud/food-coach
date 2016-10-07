@@ -7,7 +7,7 @@ declared-services:
     label: tone_analyzer
     plan: standard
 applications:
-- name: watson-food-coach-with-tone
+- name: food-coach
   command: npm start
   path: .
   instances: 1
