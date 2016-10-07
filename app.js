@@ -51,11 +51,27 @@ app.use(bodyParser.json());
 /**
  * Instantiate the Watson Conversation Service as per WDC 2.2.0
  */
-var conversation = new watson.ConversationV1({version_date: '2016-07-11'});
+//var conversation = new watson.ConversationV1({version_date: '2016-07-11'});
+var conversation = watson.conversation({
+	  url: 'https://gateway.watsonplatform.net/conversation/api',
+	  username: process.env.CONVERSATION_USERNAME || '<username>',
+	  password: process.env.CONVERSATION_PASSWORD || '<password>',
+	  version_date: '2016-07-11',
+	  version: 'v1'
+});
+
 
 /** **** TONE INTEGRATION ******/
 // Instantiate the Watson Tone Analyzer Service as per WDC 2.2.0
-var toneAnalyzer = new watson.ToneAnalyzerV3({version_date: '2016-05-19'});
+//var toneAnalyzer = new watson.ToneAnalyzerV3({version_date: '2016-05-19'});
+var toneAnalyzer = watson.tone_analyzer({
+	url: 'https://gateway.watsonplatform.net/tone-analyzer/api',
+	username: process.env.TONE_ANALYZER_USERNAME || '<username>',
+	password: process.env.TONE_ANALYZER_PASSWORD || '<password>',
+	version_date: '2016-05-19',
+	version: 'v3'
+});
+
 
 // Endpoint to be called from the client side
 app.post('/api/message', function(req, res) {
