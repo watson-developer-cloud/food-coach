@@ -12,9 +12,9 @@ deploy:
   api: https://api.ng.bluemix.net
   username: $CF_USERNAME
   password: $CF_PASSWORD
-  name: conversation-simple
+  name: food-coach
   organization: WatsonPlatformServices
-  space: demos
+  space: appgallery
   on:
-    repo: watson-developer-cloud/conversation-simple
-    branch: release
+    repo: watson-developer-cloud/food-coach
+    branch: master

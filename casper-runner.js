@@ -26,7 +26,7 @@ var runTests = function() {
   var casper = spawn('npm', ['run', 'test-casper']);
   casper.stdout.pipe(process.stdout);
 
-  casper.on('error', function()  {
+  casper.on('error', function() {
     server.close();
   });
 
@@ -36,4 +36,3 @@ var runTests = function() {
 };
 
 setTimeout(runTests, 10000);
-

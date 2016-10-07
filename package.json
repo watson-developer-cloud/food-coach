@@ -1,7 +1,7 @@
 {
-  "name": "watson-food-coach",
+  "name": "food-coach",
   "description": "A simple Node.js based web app which shows how to use the Conversation API to recognize user intents.",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -15,25 +15,25 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "basic-auth-connect": "1.0.0",
+    "basic-auth-connect": "^1.0.0",
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
-    "extend": "3.0.0",
-    "body-parser": "1.15.1",
-    "json-query": "2.1.0",
-    "twitter-node-client": "0.0.6",
+    "extend": "^3.0.0",
+    "body-parser": "^1.15.1",
+    "json-query": "^2.1.0",
+    "twitter-node-client": "^0.0.6",
     "watson-developer-cloud": "^2.2.0",
-    "cloudant": "1.4.1",
-    "express-csv": "0.6.0",
-    "nano" : "*",
-    "uuid": "2.0.2",
+    "cloudant": "^1.4.1",
+    "express-csv": "^0.6.0",
+    "nano": "^6.2.0",
+    "uuid": "^2.0.2",
     "vcap_services": "^0.2.0",
     "bluebird": "^3.4.1"
   },
   "devDependencies": {
     "browser-sync": "^2.14.0",
     "casperjs": "^1.1.1",
-    "eslint": "^3.3.1",
+    "eslint": "^3.7.1",
     "graceful-fs": "^4.1.6",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
@@ -62,7 +62,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://watson-developer-cloud/food-couch.git"
+    "url": "git+https://github.com/watson-developer-cloud/food-coach.git"
   },
   "contributors": [
     {
@@ -73,6 +73,5 @@
       "name": "April Webster",
       "email": "awebster@us.ibm.com"
     }
-  ],
-  "license": "Apache-2.0"
+  ]
 }

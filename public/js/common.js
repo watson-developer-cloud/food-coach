@@ -10,19 +10,6 @@ var Common = (function() {
     listForEach: listForEach
   };
 
-  // Take in JSON object and build a DOM element out of it
-  // (Limited in scope, cannot necessarily create arbitrary DOM elements)
-  // JSON Example:
-  //  {
-  //    "tagName": "div",
-  //    "text": "Hello World!",
-  //    "className": ["aClass", "bClass"],
-  //    "attributes": [{
-  //      "name": "onclick",
-  //      "value": "alert("Hi there!")"
-  //    }],
-  //    "children: [{other similarly structured JSON objects...}, {...}]
-  //  }
   function buildDomElementFromJson(domJson) {
     // Create a DOM element with the given tag name
     var element = document.createElement(domJson.tagName);

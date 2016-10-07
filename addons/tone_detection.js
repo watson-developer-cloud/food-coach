@@ -55,19 +55,19 @@ module.exports = {
  * (which contains the user's input text)
  */
 function invokeToneAsync(conversationPayload, toneAnalyzer) {
-  if (!conversationPayload.input || !conversationPayload.input.text) conversationPayload.input.text = ' ';
-  return new Promise(
-      function(resolve, reject) {
-        toneAnalyzer.tone(
-            {text: conversationPayload.input.text},
-            (error, data) => {
-              if (error) {
-                reject(error);
-              } else {
-                resolve(data);
-              }
-            });
-      });
+  if (!conversationPayload.input || !conversationPayload.input.text)
+    conversationPayload.input.text = ' ';
+  return new Promise(function(resolve, reject) {
+    toneAnalyzer.tone({
+      text: conversationPayload.input.text
+    }, (error, data) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(data);
+      }
+    });
+  });
 }
 
 /**
@@ -97,18 +97,17 @@ function updateUserTone(conversationPayload, toneAnalyzerPayload, maintainHistor
 
   // Extract the tones - emotion, language and social
   if (toneAnalyzerPayload && toneAnalyzerPayload.document_tone) {
-    toneAnalyzerPayload.document_tone.tone_categories.forEach(
-        function(toneCategory) {
-          if (toneCategory.category_id === EMOTION_TONE_LABEL) {
-            emotionTone = toneCategory;
-          }
-          if (toneCategory.category_id === LANGUAGE_TONE_LABEL) {
-            languageTone = toneCategory;
-          }
-          if (toneCategory.category_id === SOCIAL_TONE_LABEL) {
-            socialTone = toneCategory;
-          }
-        });
+    toneAnalyzerPayload.document_tone.tone_categories.forEach(function(toneCategory) {
+      if (toneCategory.category_id === EMOTION_TONE_LABEL) {
+        emotionTone = toneCategory;
+      }
+      if (toneCategory.category_id === LANGUAGE_TONE_LABEL) {
+        languageTone = toneCategory;
+      }
+      if (toneCategory.category_id === SOCIAL_TONE_LABEL) {
+        socialTone = toneCategory;
+      }
+    });
 
     updateEmotionTone(user, emotionTone, maintainHistory);
     updateLanguageTone(user, languageTone, maintainHistory);
@@ -125,20 +124,19 @@ function updateUserTone(conversationPayload, toneAnalyzerPayload, maintainHistor
  * all tones up to the current tone for a conversation instance with a user.
  */
 function initUser() {
-  return (
-    {
-      'tone': {
-        'emotion': {
-          'current': null
-        },
-        'language': {
-          'current': null
-        },
-        'social': {
-          'current': null
-        }
+  return ({
+    'tone': {
+      'emotion': {
+        'current': null
+      },
+      'language': {
+        'current': null
+      },
+      'social': {
+        'current': null
       }
-    });
+    }
+  });
 }
 
 /**
@@ -174,13 +172,9 @@ function updateEmotionTone(user, emotionTone, maintainHistory) {
       user.tone.emotion.history = [];
     }
 
-    user.tone.emotion.history.push({
-      'tone_name': primaryEmotion,
-      'score': primaryEmotionScore
-    });
+    user.tone.emotion.history.push({'tone_name': primaryEmotion, 'score': primaryEmotionScore});
   }
 }
-
 
 /**
  * updateLanguageTone updates the user with the language tones interpreted based on the specified thresholds
@@ -197,23 +191,11 @@ function updateLanguageTone(user, languageTone, maintainHistory) {
   languageTone.tones.forEach(function(tone) {
     if (tone.score >= LANGUAGE_HIGH_SCORE_THRESHOLD) {
       currentLanguage.push(tone.tone_name.toLowerCase() + '_high');
-      currentLanguageObject.push({
-        'tone_name': tone.tone_name.toLowerCase(),
-        'score': tone.score,
-        'interpretation': 'likely high'
-      });
+      currentLanguageObject.push({'tone_name': tone.tone_name.toLowerCase(), 'score': tone.score, 'interpretation': 'likely high'});
     } else if (tone.score <= LANGUAGE_NO_SCORE_THRESHOLD) {
-      currentLanguageObject.push({
-        'tone_name': tone.tone_name.toLowerCase(),
-        'score': tone.score,
-        'interpretation': 'no evidence'
-      });
+      currentLanguageObject.push({'tone_name': tone.tone_name.toLowerCase(), 'score': tone.score, 'interpretation': 'no evidence'});
     } else {
-      currentLanguageObject.push({
-        'tone_name': tone.tone_name.toLowerCase(),
-        'score': tone.score,
-        'interpretation': 'likely medium'
-      });
+      currentLanguageObject.push({'tone_name': tone.tone_name.toLowerCase(), 'score': tone.score, 'interpretation': 'likely medium'});
     }
   });
 
@@ -228,7 +210,6 @@ function updateLanguageTone(user, languageTone, maintainHistory) {
     user.tone.language.history.push(currentLanguageObject);
   }
 }
-
 
 /**
  * updateSocialTone updates the user with the social tones interpreted based on the specified thresholds
@@ -245,24 +226,12 @@ function updateSocialTone(user, socialTone, maintainHistory) {
   socialTone.tones.forEach(function(tone) {
     if (tone.score >= SOCIAL_HIGH_SCORE_THRESHOLD) {
       currentSocial.push(tone.tone_name.toLowerCase() + '_high');
-      currentSocialObject.push({
-        'tone_name': tone.tone_name.toLowerCase(),
-        'score': tone.score,
-        'interpretation': 'likely high'
-      });
+      currentSocialObject.push({'tone_name': tone.tone_name.toLowerCase(), 'score': tone.score, 'interpretation': 'likely high'});
     } else if (tone.score <= SOCIAL_LOW_SCORE_THRESHOLD) {
       currentSocial.push(tone.tone_name.toLowerCase() + '_low');
-      currentSocialObject.push({
-        'tone_name': tone.tone_name.toLowerCase(),
-        'score': tone.score,
-        'interpretation': 'likely low'
-      });
-    } else  {
-      currentSocialObject.push({
-        'tone_name': tone.tone_name.toLowerCase(),
-        'score': tone.score,
-        'interpretation': 'likely medium'
-      });
+      currentSocialObject.push({'tone_name': tone.tone_name.toLowerCase(), 'score': tone.score, 'interpretation': 'likely low'});
+    } else {
+      currentSocialObject.push({'tone_name': tone.tone_name.toLowerCase(), 'score': tone.score, 'interpretation': 'likely medium'});
     }
   });
 
@@ -277,4 +246,3 @@ function updateSocialTone(user, socialTone, maintainHistory) {
     user.tone.social.history.push(currentSocialObject);
   }
 }
-

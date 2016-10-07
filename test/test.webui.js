@@ -37,16 +37,13 @@ casper.thenOpen('http://localhost:3000', function(result) {
     casper.test.assertMatch(text, /^Did you have .*/i);
 
     casper.sendKeys('#textInput', 'No');
-    this.sendKeys('#textInput', casper.page.event.key.Enter, {
-      keepFocus: true
-    });
+    this.sendKeys('#textInput', casper.page.event.key.Enter, {keepFocus: true});
   });
 
- // Process response
+  // Process response
   casper.then(function() {
     casper.waitForSelector('#scrollingChat > div:nth-child(3)', function() {});
   });
-
 
   casper.then(function() {
     var text2 = this.evaluate(function() {
@@ -56,19 +53,17 @@ casper.thenOpen('http://localhost:3000', function(result) {
     casper.test.assertMatch(text2, /^.* skipping meals.*/i);
 
     casper.sendKeys('#textInput', 'Good');
-    this.sendKeys('#textInput', casper.page.event.key.Enter, {
-      keepFocus: true
-    });
+    this.sendKeys('#textInput', casper.page.event.key.Enter, {keepFocus: true});
   });
 
- // Process response
+  // Process response
   casper.then(function() {
     casper.waitForSelector('#scrollingChat > div:nth-child(5)', function() {
       this.echo('Inside 5th');
     });
   });
 
-   // Check for Response
+  // Check for Response
   casper.then(function() {
     var text3 = this.evaluate(function() {
       return document.querySelector('#scrollingChat > div:nth-child(5) > div > div > p').textContent;
@@ -81,4 +76,3 @@ casper.thenOpen('http://localhost:3000', function(result) {
 casper.run(function() {
   this.test.done();
 });
-
