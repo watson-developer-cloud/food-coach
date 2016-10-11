@@ -1,4 +1,4 @@
-# Food Coach [![Build Status](https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/food-coach)
+# Food Coach sample application [![Build Status](https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/food-coach)
 
 This application demonstrates how the Conversation Service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.
 
@@ -8,46 +8,6 @@ Demo: http://food-coach.mybluemix.net/
 
 For more information on the Conversation Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/doc/conversation/overview.shtml).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
-
-# What does the Food Coach do?
-
-The food coach is a sample chat-bot application.  The bot asks the user if they've had a particular meal (breakfast, lunch, or dinner) based on the time of day, and what the user ate for that meal.
-
-The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation Service in the right panel. The user's input is run against a small set of sample data trained with the following intents:
-
-    yes: acknowledgment that the specified meal was eaten
-    no: the specified meal was not eaten
-    help
-    exit
-
-The dialog is also trained on two types of entities:
-
-    food items
-    unhealthy food items
-
-These intents and entities help the bot understand variations on user input.
-
-After asking the user what they ate (if a meal was consumed), the bot asks the user how they feel about it. Depending on the user's emotional tone, the bot provides different feedback.
-
-Below you can find some sample interactions:
-
-![Alt text](readme_images/examples.jpeg?raw=true)
-
-In order to integrate tone with conversation, the following approach was taken:
-   * Intercept the user's message. Before sending it to the Conversation Service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
-   * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Conversation Service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
-   * Send the user input, along with the updated context object in the payload to the Conversation Service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
-
-
-You can see the JSON response object from the Conversation Service in the right hand panel.
-
-![Alt text](readme_images/tone_context.jpeg?raw=true)
-
-In the conversation template, alternative bot responses were encoded based on the user's emotional tone. For example:
-
-![Alt text](readme_images/rule.png?raw=true)
-
-
 
 # Deploying the application
 
@@ -280,18 +240,6 @@ When the command finishes processing, your application is deployed and running o
 
 After you have the application installed and running, experiment with it to see how it responds to your input.
 
-The application interface is designed and trained for chatting with a cognitive car. The chat interface is on the left, and the
-JSON that the JavaScript code receives from the server is on the right. Your questions and commands are interpreted using a small set of sample data trained with the following intents:
-
-    yes
-    no
-    help
-    exit
-
-To see details of how these intents are defined, including sample input for each intent, open the workspace in the Conversation tooling on Bluemix, and go to the **Intents** tab. (For more information about intents, see the [Conversation service documentation](http://www.ibm.com/watson/developercloud/doc/conversation/intent_ovw.shtml).)
-
-The system understands your intent and responds accordingly. You can see the details of how your input was understood by examining the JSON data in the `Watson understands` section on the right side.
-
 ## Modifying the application
 
 After you have the application deployed and running, you can explore the source files and make changes. Try the following:
@@ -301,6 +249,47 @@ After you have the application deployed and running, you can explore the source 
    * Modify the .html file to change the appearance of the application page.
 
    * Use the Conversation tool to train the service for new intents, or to modify the dialog flow. For more information, see the [Conversation service documentation](http://www.ibm.com/watson/developercloud/doc/conversation/index.shtml).
+
+# What does the Food Coach application do?
+
+The application interface is designed for chatting with a coaching bot. Based on the time of day, it asks you if you've had a particular meal (breakfast, lunch, or dinner) and what you ate for that meal.
+
+The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation Service in the right panel. Your input is run against a small set of sample data trained with the following intents:
+
+    yes: acknowledgment that the specified meal was eaten
+    no: the specified meal was not eaten
+    help
+    exit
+
+The dialog is also trained on two types of entities:
+
+    food items
+    unhealthy food items
+
+These intents and entities help the bot understand variations your input.
+
+After asking you what you ate (if a meal was consumed), the bot asks you how you feel about it. Depending on your emotional tone, the bot provides different feedback.
+
+Below you can find some sample interactions:
+
+![Alt text](readme_images/examples.jpeg?raw=true)
+
+In order to integrate the Tone Analyzer with the Conversation service, the following approach was taken:
+   * Intercept the user's message. Before sending it to the Conversation Service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
+   * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Conversation Service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
+   * Send the user input, along with the updated context object in the payload to the Conversation Service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
+
+
+You can see the JSON response object from the Conversation Service in the right hand panel.
+
+![Alt text](readme_images/tone_context.jpeg?raw=true)
+
+In the conversation template, alternative bot responses were encoded based on the user's emotional tone. For example:
+
+![Alt text](readme_images/rule.png?raw=true)
+
+
+
 
 # Troubleshooting
 
