@@ -5,9 +5,9 @@
 var Common = (function() {
   // Publicly accessible methods defined
   return {
-    buildDomElement: buildDomElementFromJson,
-    fireEvent: fireEvent,
-    listForEach: listForEach
+    buildDomElement : buildDomElementFromJson,
+    fireEvent : fireEvent,
+    listForEach : listForEach
   };
 
   function buildDomElementFromJson(domJson) {
@@ -58,7 +58,8 @@ var Common = (function() {
     return !element.dispatchEvent(evt);
   }
 
-  // A function that runs a for each loop on a List, running the callback function for each one
+  // A function that runs a for each loop on a List, running the callback
+  // function for each one
   function listForEach(list, callback) {
     for (var i = 0; i < list.length; i++) {
       callback.call(null, list[i]);
