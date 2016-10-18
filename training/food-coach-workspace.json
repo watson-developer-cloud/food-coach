@@ -20172,7 +20172,7 @@
 	}, {
 		"go_to": null,
 		"output": {
-			"text": "Here is a good resource on healthy vs unhealthy food <a  target=\"_blank\" href= \"http://www.hc-sc.gc.ca/fn-an/food-guide-aliment/choose-choix/index-eng.php\">Food and nutrition Guide</a>.\n<br/><br/>Talk to you later, bye for now!<br/><br/><a href=\"#\" onclick=\"window.location.reload(true);\">Click here to start again.</a>"
+			"text": "Here is a good resource on healthy vs unhealthy food <a  target=\"_blank\" href= \"https://www.choosemyplate.gov\">Food and nutrition Guide</a>.\n<br/><br/>Talk to you later, bye for now!<br/><br/><a href=\"#\" onclick=\"window.location.reload(true);\">Click here to start again.</a>"
 		},
 		"parent": null,
 		"context": {

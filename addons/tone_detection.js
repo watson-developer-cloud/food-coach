@@ -61,8 +61,8 @@ module.exports = {
  *          the conversationPayload (which contains the user's input text)
  */
 function invokeToneAsync(conversationPayload, toneAnalyzer) {
-  if (!conversationPayload.input || !conversationPayload.input.text)
-    conversationPayload.input.text = ' ';
+  if (!conversationPayload.input || !conversationPayload.input.text || conversationPayload.input.text.trim() == '')
+    conversationPayload.input.text = '<empty>';
   return new Promise(function(resolve, reject) {
     toneAnalyzer.tone({
       text: conversationPayload.input.text
