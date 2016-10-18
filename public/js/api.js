@@ -9,8 +9,10 @@ var Api = (function() {
   return {
     sendRequest: sendRequest,
 
-    // The request/response getters/setters are defined here to prevent internal methods
-    // from calling the methods without any of the callbacks that are added elsewhere.
+    // The request/response getters/setters are defined here to prevent internal
+    // methods
+    // from calling the methods without any of the callbacks that are added
+    // elsewhere.
     getRequestPayload: function() {
       return requestPayload;
     },

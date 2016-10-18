@@ -22,7 +22,6 @@ var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var watson = require('watson-developer-cloud');
 
-/****** TONE INTEGRATION ******/
 var toneDetection = require('./addons/tone_detection.js'); // required for tone
                                                             // detection
 var maintainToneHistory = false;
@@ -49,30 +48,20 @@ var app = express();
 app.use(express.static('./public')); // load UI from public folder
 app.use(bodyParser.json());
 
-/**
- * Instantiate the Watson Conversation Service as per WDC 2.2.0
- */
-// var conversation = new watson.ConversationV1({version_date: '2016-07-11'});
-var conversation = watson.conversation({
-  url: 'https://gateway.watsonplatform.net/conversation/api',
+
+// Instantiate the Watson Conversation Service as per WDC 2.2.0
+var conversation = new watson.ConversationV1({
+  version_date: '2016-09-20',
   username: process.env.CONVERSATION_USERNAME || '<username>',
-  password: process.env.CONVERSATION_PASSWORD || '<password>',
-  version_date: '2016-07-11',
-  version: 'v1'
+  password: process.env.CONVERSATION_PASSWORD || '<password>'
 });
 
-
-/** **** TONE INTEGRATION ***** */
 // Instantiate the Watson Tone Analyzer Service as per WDC 2.2.0
-// var toneAnalyzer = new watson.ToneAnalyzerV3({version_date: '2016-05-19'});
-var toneAnalyzer = watson.tone_analyzer({
-  url: 'https://gateway.watsonplatform.net/tone-analyzer/api',
-  username: process.env.TONE_ANALYZER_USERNAME || '<username>',
-  password: process.env.TONE_ANALYZER_PASSWORD || '<password>',
+var toneAnalyzer = new watson.ToneAnalyzerV3({
   version_date: '2016-05-19',
-  version: 'v3'
+  username: process.env.TONE_ANALYZER_USERNAME || '<username>',
+  password: process.env.TONE_ANALYZER_PASSWORD || '<password>'
 });
-
 
 // Endpoint to be called from the client side
 app.post('/api/message', function(req, res) {
@@ -97,13 +86,13 @@ app.post('/api/message', function(req, res) {
     if (req.body.context) {
       payload.context = req.body.context;
     } else {
-      /** **** TONE INTEGRATION ***** */
+
       // Add the user object (containing tone) to the context object for
       // Conversation
       payload.context = toneDetection.initUser();
     }
 
-    /** **** TONE INTEGRATION ***** */
+
     // Invoke the tone-aware call to the Conversation Service
     invokeToneConversation(payload, res);
   }
