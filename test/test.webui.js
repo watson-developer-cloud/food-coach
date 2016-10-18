@@ -43,7 +43,7 @@ casper
 
             casper.sendKeys('#textInput', 'No');
             this.sendKeys('#textInput', casper.page.event.key.Enter, {
-              keepFocus : true
+              keepFocus: true
             });
           });
 
@@ -66,7 +66,7 @@ casper
 
                 casper.sendKeys('#textInput', 'Good');
                 this.sendKeys('#textInput', casper.page.event.key.Enter, {
-                  keepFocus : true
+                  keepFocus: true
                 });
               });
 

@@ -1,4 +1,3 @@
-
 /* global ConversationPanel: true, PayloadPanel: true*/
 /* eslint no-unused-vars: "off" */
 

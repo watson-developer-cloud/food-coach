@@ -5,9 +5,9 @@
 var Common = (function() {
   // Publicly accessible methods defined
   return {
-    buildDomElement : buildDomElementFromJson,
-    fireEvent : fireEvent,
-    listForEach : listForEach
+    buildDomElement: buildDomElementFromJson,
+    fireEvent: fireEvent,
+    listForEach: listForEach
   };
 
   function buildDomElementFromJson(domJson) {
