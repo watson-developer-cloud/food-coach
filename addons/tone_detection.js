@@ -1,27 +1,28 @@
 /**
  * Copyright 2015 IBM Corp. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 'use strict';
-/* eslint-env es6*/
+/* eslint-env es6 */
 
 var Promise = require('bluebird');
 
 /**
- * Thresholds for identifying meaningful tones returned by the Watson Tone Analyzer.  Current values are
- * based on the recommendations made by the Watson Tone Analyzer at
+ * Thresholds for identifying meaningful tones returned by the Watson Tone
+ * Analyzer. Current values are based on the recommendations made by the Watson
+ * Tone Analyzer at
  * https://www.ibm.com/watson/developercloud/doc/tone-analyzer/understanding-tone.shtml
  * These thresholds can be adjusted to client/domain requirements.
  */
@@ -48,11 +49,16 @@ module.exports = {
 };
 
 /**
- * invokeToneAsync is an asynchronous function that calls the Tone Analyzer service and returns a Promise
- * @param {Json} conversationPayload json object returned by the Watson Conversation Service
- * @param {Object} toneAnalyzer an instance of the Watson Tone Analyzer service
- * @returns {Promise} a Promise for the result of calling the toneAnalyzer with the conversationPayload
- * (which contains the user's input text)
+ * invokeToneAsync is an asynchronous function that calls the Tone Analyzer
+ * service and returns a Promise
+ * 
+ * @param {Json}
+ *                conversationPayload json object returned by the Watson
+ *                Conversation Service
+ * @param {Object}
+ *                toneAnalyzer an instance of the Watson Tone Analyzer service
+ * @returns {Promise} a Promise for the result of calling the toneAnalyzer with
+ *          the conversationPayload (which contains the user's input text)
  */
 function invokeToneAsync(conversationPayload, toneAnalyzer) {
   if (!conversationPayload.input || !conversationPayload.input.text)
@@ -71,12 +77,20 @@ function invokeToneAsync(conversationPayload, toneAnalyzer) {
 }
 
 /**
- * updateUserTone processes the Tone Analyzer payload to pull out the emotion, language and social
- * tones, and identify the meaningful tones (i.e., those tones that meet the specified thresholds).
- * The conversationPayload json object is updated to include these tones.
- * @param {Json} conversationPayload json object returned by the Watson Conversation Service
- * @param {Json} toneAnalyzerPayload json object returned by the Watson Tone Analyzer Service
- * @param {boolean} maintainHistory set history for each user turn in the  history context variable
+ * updateUserTone processes the Tone Analyzer payload to pull out the emotion,
+ * language and social tones, and identify the meaningful tones (i.e., those
+ * tones that meet the specified thresholds). The conversationPayload json
+ * object is updated to include these tones.
+ * 
+ * @param {Json}
+ *                conversationPayload json object returned by the Watson
+ *                Conversation Service
+ * @param {Json}
+ *                toneAnalyzerPayload json object returned by the Watson Tone
+ *                Analyzer Service
+ * @param {boolean}
+ *                maintainHistory set history for each user turn in the history
+ *                context variable
  * @returns {void}
  */
 function updateUserTone(conversationPayload, toneAnalyzerPayload, maintainHistory) {
@@ -118,10 +132,13 @@ function updateUserTone(conversationPayload, toneAnalyzerPayload, maintainHistor
 }
 
 /**
- * initToneContext initializes a user object containing tone data (from the Watson Tone Analyzer)
- * @returns {Json} user json object with the emotion, language and social tones.  The current
- * tone identifies the tone for a specific conversation turn, and the history provides the conversation for
- * all tones up to the current tone for a conversation instance with a user.
+ * initToneContext initializes a user object containing tone data (from the
+ * Watson Tone Analyzer)
+ * 
+ * @returns {Json} user json object with the emotion, language and social tones.
+ *          The current tone identifies the tone for a specific conversation
+ *          turn, and the history provides the conversation for all tones up to
+ *          the current tone for a conversation instance with a user.
  */
 function initUser() {
   return ({
@@ -140,11 +157,19 @@ function initUser() {
 }
 
 /**
- * updateEmotionTone updates the user emotion tone with the primary emotion - the emotion tone that has
- * a score greater than or equal to the EMOTION_SCORE_THRESHOLD; otherwise primary emotion will be 'neutral'
- * @param {Json} user a json object representing user information (tone) to be used in conversing with the Conversation Service
- * @param {Json} emotionTone a json object containing the emotion tones in the payload returned by the Tone Analyzer
- * @param {boolean} maintainHistory set history for each user turn in the  history context variable
+ * updateEmotionTone updates the user emotion tone with the primary emotion -
+ * the emotion tone that has a score greater than or equal to the
+ * EMOTION_SCORE_THRESHOLD; otherwise primary emotion will be 'neutral'
+ * 
+ * @param {Json}
+ *                user a json object representing user information (tone) to be
+ *                used in conversing with the Conversation Service
+ * @param {Json}
+ *                emotionTone a json object containing the emotion tones in the
+ *                payload returned by the Tone Analyzer
+ * @param {boolean}
+ *                maintainHistory set history for each user turn in the history
+ *                context variable
  * @returns {void}
  */
 function updateEmotionTone(user, emotionTone, maintainHistory) {
@@ -177,10 +202,18 @@ function updateEmotionTone(user, emotionTone, maintainHistory) {
 }
 
 /**
- * updateLanguageTone updates the user with the language tones interpreted based on the specified thresholds
- * @param {Json} user a json object representing user information (tone) to be used in conversing with the Conversation Service
- * @param {Json} languageTone a json object containing the language tones in the payload returned by the Tone Analyzer
- * @param {boolean} maintainHistory set history for each user turn in the  history context variable
+ * updateLanguageTone updates the user with the language tones interpreted based
+ * on the specified thresholds
+ * 
+ * @param {Json}
+ *                user a json object representing user information (tone) to be
+ *                used in conversing with the Conversation Service
+ * @param {Json}
+ *                languageTone a json object containing the language tones in
+ *                the payload returned by the Tone Analyzer
+ * @param {boolean}
+ *                maintainHistory set history for each user turn in the history
+ *                context variable
  * @returns {void}
  */
 function updateLanguageTone(user, languageTone, maintainHistory) {
@@ -212,10 +245,18 @@ function updateLanguageTone(user, languageTone, maintainHistory) {
 }
 
 /**
- * updateSocialTone updates the user with the social tones interpreted based on the specified thresholds
- * @param {Json} user a json object representing user information (tone) to be used in conversing with the Conversation Service
- * @param {Json} socialTone a json object containing the social tones in the payload returned by the Tone Analyzer
- * @param {boolean} maintainHistory set history for each user turn in the  history context variable
+ * updateSocialTone updates the user with the social tones interpreted based on
+ * the specified thresholds
+ * 
+ * @param {Json}
+ *                user a json object representing user information (tone) to be
+ *                used in conversing with the Conversation Service
+ * @param {Json}
+ *                socialTone a json object containing the social tones in the
+ *                payload returned by the Tone Analyzer
+ * @param {boolean}
+ *                maintainHistory set history for each user turn in the history
+ *                context variable
  * @returns {void}
  */
 function updateSocialTone(user, socialTone, maintainHistory) {

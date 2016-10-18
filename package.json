@@ -8,7 +8,7 @@
     "test-unit": "istanbul cover ./node_modules/mocha/bin/_mocha ./test/unit",
     "test-casper": "casperjs test ./test/test.webui.js",
     "test-casper-runner": "NODE_ENV=test node casper-runner.js",
-    "test": "npm run lint && npm run test-unit && npm run test-casper-runner",
+    "test": "npm run lint && npm run test-unit",
     "lint": "eslint .",
     "codecov": "npm run test && (codecov || true)",
     "autofix": "eslint --fix .",
