@@ -49,16 +49,12 @@ app.use(bodyParser.json());
 
 // Instantiate the Watson Conversation Service as per WDC 2.2.0
 var conversation = new watson.ConversationV1({
-  version_date: '2016-09-20',
-  username: process.env.CONVERSATION_USERNAME || '<username>',
-  password: process.env.CONVERSATION_PASSWORD || '<password>'
+  version_date: '2016-09-20'
 });
 
 // Instantiate the Watson Tone Analyzer Service as per WDC 2.2.0
 var toneAnalyzer = new watson.ToneAnalyzerV3({
-  version_date: '2016-05-19',
-  username: process.env.TONE_ANALYZER_USERNAME || '<username>',
-  password: process.env.TONE_ANALYZER_PASSWORD || '<password>'
+  version_date: '2016-05-19'
 });
 
 // Endpoint to be called from the client side
