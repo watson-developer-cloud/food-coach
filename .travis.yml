@@ -18,5 +18,3 @@ deploy:
   on:
     repo: watson-developer-cloud/food-coach
     branch: master
-before_install:
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] &&  openssl aes-256-cbc -K $encrypted_373eea20a8e7_key -iv $encrypted_373eea20a8e7_iv -in .env.enc -out .env -d  || true'
