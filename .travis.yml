@@ -7,14 +7,21 @@ node_js: stable
 script:
 - npm run lint
 - npm run codecov
+env:
+  global:
+  - CF_APP=food-coach
+  - CF_API=https://api.ng.bluemix.net
+  - CF_ORGANIZATION=WatsonPlatformServices
+  - CF_SPACE=appgallery
+
+before_deploy: npm install -g cf-blue-green
 deploy:
-  provider: cloudfoundry
-  api: https://api.ng.bluemix.net
-  username: $CF_USERNAME
-  password: $CF_PASSWORD
-  name: food-coach
-  organization: WatsonPlatformServices
-  space: appgallery
+  skip_cleanup: true
+  provider: script
+  script:
+  - cf-blue-green-travis
   on:
-    repo: watson-developer-cloud/food-coach
     branch: master
+    repo: watson-developer-cloud/food-coach
+notifications:
+  email: false
