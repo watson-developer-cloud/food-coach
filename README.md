@@ -1,12 +1,12 @@
 # Food Coach sample application [![Build Status](https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/food-coach)
 
-This application demonstrates how the Conversation Service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.
+This application demonstrates how the Watson Conversation service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.
 
 ![Demo GIF](readme_images/demo.gif?raw=true)
 
 Demo: http://food-coach.mybluemix.net/
 
-For more information on the Conversation Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/doc/conversation/overview.shtml).
+For more information on the Conversation service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/doc/conversation/overview.shtml).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
 
 # Deploying the application
@@ -31,9 +31,9 @@ If you want to experiment with the application or use it as a basis for building
 
 ## Setting up the Conversation service
 
-1. Make sure you have logged into your Bluemix account using Cloud Foundry. For more information, see [the Watson Developer Cloud documentation](https://www.ibm.com/watson/developercloud/doc/getting_started/gs-cf.shtml).
+1. Make sure you have logged into your Bluemix account using Cloud Foundry. For more information, see [the Watson Developer Cloud documentation](https://www.ibm.com/watson/developercloud/doc/common/getting-started-cf.html).
 
-1. Create an instance of the Conversation Service in the IBM cloud:
+1. Create an instance of the Conversation service in the IBM cloud:
 
    ```bash
    cf create-service conversation <service_plan> <service_instance_name>
@@ -254,7 +254,7 @@ After you have the application deployed and running, you can explore the source 
 
 The application interface is designed for chatting with a coaching bot. Based on the time of day, it asks you if you've had a particular meal (breakfast, lunch, or dinner) and what you ate for that meal.
 
-The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation Service in the right panel. Your input is run against a small set of sample data trained with the following intents:
+The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation service in the right panel. Your input is run against a small set of sample data trained with the following intents:
 
     yes: acknowledgment that the specified meal was eaten
     no: the specified meal was not eaten
@@ -275,12 +275,12 @@ Below you can find some sample interactions:
 ![Alt text](readme_images/examples.jpeg?raw=true)
 
 In order to integrate the Tone Analyzer with the Conversation service, the following approach was taken:
-   * Intercept the user's message. Before sending it to the Conversation Service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
-   * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Conversation Service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
-   * Send the user input, along with the updated context object in the payload to the Conversation Service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
+   * Intercept the user's message. Before sending it to the Conversation service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
+   * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Conversation service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
+   * Send the user input, along with the updated context object in the payload to the Conversation service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
 
 
-You can see the JSON response object from the Conversation Service in the right hand panel.
+You can see the JSON response object from the Conversation service in the right hand panel.
 
 ![Alt text](readme_images/tone_context.jpeg?raw=true)
 
