@@ -6,7 +6,7 @@ This application demonstrates how the Watson Conversation service can be adapted
 
 Demo: http://food-coach.mybluemix.net/
 
-For more information on the Conversation service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/doc/conversation/overview.shtml).
+For more information on the Conversation service, see the [detailed documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
 
 # Deploying the application
@@ -248,7 +248,7 @@ After you have the application deployed and running, you can explore the source 
 
    * Modify the .html file to change the appearance of the application page.
 
-   * Use the Conversation tool to train the service for new intents, or to modify the dialog flow. For more information, see the [Conversation service documentation](http://www.ibm.com/watson/developercloud/doc/conversation/index.shtml).
+   * Use the Conversation tool to train the service for new intents, or to modify the dialog flow. For more information, see the [Conversation service documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
 
 # What does the Food Coach application do?
 
