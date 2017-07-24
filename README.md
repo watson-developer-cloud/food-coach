@@ -46,7 +46,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf create-service conversation free conversation-food-coach
+   cf create-service conversation lite conversation-food-coach
    ```
 
 1. Create a service key:
@@ -208,7 +208,7 @@ If you want to subsequently deploy your local version of the application to the 
    declared-services:
      conversation-food-coach:
        label: conversation
-       plan: free
+       plan: lite
      tone-analyzer-food-coach:
        label: tone_analyzer
        plan: standard
