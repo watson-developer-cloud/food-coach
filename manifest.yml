@@ -2,7 +2,7 @@
 declared-services:
   conversation-service:
     label: conversation
-    plan: free
+    plan: lite
   tone-analyzer-standard:
     label: tone_analyzer
     plan: standard
