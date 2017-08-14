@@ -1,10 +1,10 @@
-# Food Coach sample application [![Build Status](https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/food-coach)
+# Customer Engagement Tone Analyzer & Conversation sample application [![Build Status](https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/food-coach)
 
-This application demonstrates how the Watson Conversation service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.
+This application demonstrates how the Watson Conversation service can be adapted to use Tone Analyzer's Customer Engagement feature along with intents and entities in a simple chat interface.
 
 ![Demo GIF](readme_images/demo.gif?raw=true)
 
-Demo: http://food-coach.mybluemix.net/
+Demo: http://ce-tone-demo.mybluemix.net/
 
 For more information on the Conversation service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/doc/conversation/overview.shtml).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
@@ -46,7 +46,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf create-service conversation free conversation-food-coach
+   cf create-service conversation free conversation-ce-tone
    ```
 
 1. Create a service key:
@@ -58,7 +58,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf create-service-key conversation-food-coach conversation-food-coach-key
+   cf create-service-key conversation-ce-tone conversation-ce-tone-key
    ```
 
 ## Setting up the Tone Analyzer service
@@ -73,7 +73,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf create-service tone_analyzer standard tone-analyzer-food-coach
+   cf create-service tone_analyzer standard tone-analyzer-ce-tone
    ```
 
 1. Create a service key:
@@ -85,7 +85,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf create-service-key tone-analyzer-food-coach tone-analyzer-food-coach-key
+   cf create-service-key tone-analyzer-ce-tone tone-analyzer-ce-tone-key
    ```
 
 ### Importing the Conversation workspace
@@ -106,14 +106,14 @@ If you want to experiment with the application or use it as a basis for building
 
 1. Click **Import** to add the food coach workspace. When prompted, specify the location of the workspace JSON file in your local copy of the application project:
 
-   `<project_root>/food-coach/training/food-coach-workspace.json`
+   `<project_root>/ce-tone-conversation/training/customer-engagement-workspace.json`
 
 1. Select **Everything (Intents, Entities, and Dialog)** and then click **Import**. The food coach workspace is created.
    * If you have any problems uploading the workspace using Chrome, please try another browser such as Firefox or Safari.
 
 ## Configuring the application environment
 
-1. At the command line, navigate to the local project directory (`<project_root>/food-coach`).
+1. At the command line, navigate to the local project directory (`<project_root>/ce-tone-conversation`).
 
 1. Copy the `.env.example` file to a new `.env` file. Open this file in a text editor.
 
@@ -130,7 +130,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf service-key conversation-food-coach conversation-food-coach-key
+   cf service-key conversation-ce-tone conversation-ce-tone-key
    ```
 
    The output from this command is a JSON object, as in this example:
@@ -206,21 +206,21 @@ If you want to subsequently deploy your local version of the application to the 
    ```YAML
    ---
    declared-services:
-     conversation-food-coach:
+     conversation-ce-tone:
        label: conversation
        plan: free
-     tone-analyzer-food-coach:
+     tone-analyzer-ce-tone:
        label: tone_analyzer
        plan: standard
    applications:
-   - name: conversation-food-coach-demo
+   - name: conversation-ce-tone
      command: npm start
      path: .
      memory: 256M
      instances: 1
      services:
-     - conversation-food-coach
-     - tone-analyzer-food-coach
+     - conversation-ce-tone
+     - tone-analyzer-ce-tone
      env:
        NPM_CONFIG_PRODUCTION: false
        WORKSPACE_ID: fdeab5e4-0ebe-4183-8d10-6e5557a6d842
@@ -250,21 +250,25 @@ After you have the application deployed and running, you can explore the source 
 
    * Use the Conversation tool to train the service for new intents, or to modify the dialog flow. For more information, see the [Conversation service documentation](http://www.ibm.com/watson/developercloud/doc/conversation/index.shtml).
 
-# What does the Food Coach application do?
+# What does the Customer Engagement Tone Analyzer & Conversation application do?
 
-The application interface is designed for chatting with a coaching bot. Based on the time of day, it asks you if you've had a particular meal (breakfast, lunch, or dinner) and what you ate for that meal.
+The application interface is designed for chatting with a customer engagement bot. Based on a previous laptop purchase, the bot asks how the experience has been and responds accordingly if given a negative or positive response.
 
 The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation service in the right panel. Your input is run against a small set of sample data trained with the following intents:
 
-    yes: acknowledgment that the specified meal was eaten
-    no: the specified meal was not eaten
-    help
-    exit
+    yes
+    no
+    refund: get a refund on current laptop
+    restart: restart the conversation at any point
+    tradeIn: replace current laptop with another one
+    thanks
+    greeting
 
 The dialog is also trained on two types of entities:
 
-    food items
-    unhealthy food items
+    design
+    size
+    weight
 
 These intents and entities help the bot understand variations your input.
 
