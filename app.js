@@ -49,7 +49,7 @@ app.use(bodyParser.json());
 
 // Instantiate the Watson Conversation Service as per WDC 2.2.0
 var conversation = new watson.ConversationV1({
-  version_date: '2016-09-20'
+  version_date: '2017-05-26'
 });
 
 // Instantiate the Watson Tone Analyzer Service as per WDC 2.2.0
