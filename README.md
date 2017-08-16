@@ -2,7 +2,7 @@
 
 This application demonstrates how the Watson Conversation service can be adapted to use Tone Analyzer's Customer Engagement feature along with intents and entities in a simple chat interface.
 
-![Demo GIF](readme_images/demo.gif?raw=true)
+![Demo GIF](readme_images/ce-demo.gif?raw=true)
 
 Demo: http://ce-tone-demo.mybluemix.net/
 
@@ -94,7 +94,7 @@ If you want to experiment with the application or use it as a basis for building
 
 1. From the **Dashboard** tab, click the newly created Conversation service in the **Services** list.  It'll have the name you gave it in the previous step (e.g., ```<service_instance_name>```).
 
-   ![Screen capture of Services list](readme_images/conversation_food_coach_service.png)
+   ![Screen capture of Services list](readme_images/conversation_ce_service.png)
 
    The Service Details page opens.
 
@@ -161,7 +161,7 @@ Do the same for the Tone Analyzer service, and paste the values into the `TONE_A
 
 1. Click the menu icon in the upper right corner of the workspace tile, and then select **View details**.
 
-   ![Screen capture of workspace tile menu](readme_images/conversation_food_coach_workspace_details.png)
+   ![Screen capture of workspace tile menu](readme_images/conversation_ce_workspace_details.png)
 
    The tile shows the workspace details.
 
@@ -276,7 +276,7 @@ After asking you what you ate (if a meal was consumed), the bot asks you how you
 
 Below you can find some sample interactions:
 
-![Alt text](readme_images/examples.jpeg?raw=true)
+![Alt text](readme_images/examples.jpg?raw=true)
 
 In order to integrate the Tone Analyzer with the Conversation service, the following approach was taken:
    * Intercept the user's message. Before sending it to the Conversation service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
@@ -286,7 +286,7 @@ In order to integrate the Tone Analyzer with the Conversation service, the follo
 
 You can see the JSON response object from the Conversation service in the right hand panel.
 
-![Alt text](readme_images/tone_context.jpeg?raw=true)
+![Alt text](readme_images/tone_context.jpg?raw=true)
 
 In the conversation template, alternative bot responses were encoded based on the user's emotional tone. For example:
 
