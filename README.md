@@ -263,6 +263,7 @@ The chat interface is in the left panel of the UI, and the JSON response object 
     tradeIn: replace current laptop with another one
     thanks
     greeting
+    help: suggestions on what to say
 
 The dialog is also trained on two types of entities:
 
