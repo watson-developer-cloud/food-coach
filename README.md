@@ -46,7 +46,7 @@ If you want to experiment with the application or use it as a basis for building
    For example:
 
    ```bash
-   cf create-service conversation free conversation-ce-tone
+   cf create-service conversation standard conversation-ce-tone
    ```
 
 1. Create a service key:
@@ -208,7 +208,7 @@ If you want to subsequently deploy your local version of the application to the 
    declared-services:
      conversation-ce-tone:
        label: conversation
-       plan: free
+       plan: standard
      tone-analyzer-ce-tone:
        label: tone_analyzer
        plan: standard
