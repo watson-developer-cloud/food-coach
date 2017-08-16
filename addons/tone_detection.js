@@ -115,7 +115,7 @@ function updateUserTone(conversationPayload, toneAnalyzerPayload, maintainHistor
   if (detectedTones.length == 0) {
     userTone = "none"
   } else {
-    userTone = detectedTones[0].tond_id;
+    userTone = detectedTones[0].tone_id;
       }
       
   user.tone.emotion.current = userTone;
