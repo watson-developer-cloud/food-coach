@@ -106,7 +106,7 @@ If you want to experiment with the application or use it as a basis for building
 
 1. Click **Import** to add the food coach workspace. When prompted, specify the location of the workspace JSON file in your local copy of the application project:
 
-   `<project_root>/ce-tone-conversation/training/customer-engagement-workspace.json`
+   `<project_root>/ce-tone-conversation/training/ce-workspace.json`
 
 1. Select **Everything (Intents, Entities, and Dialog)** and then click **Import**. The food coach workspace is created.
    * If you have any problems uploading the workspace using Chrome, please try another browser such as Firefox or Safari.
