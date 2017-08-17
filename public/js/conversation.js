@@ -49,7 +49,7 @@ var ConversationPanel = (function() {
     // Add the time context variable to indicate what meal the user may be
     // eating
     var context = {
-      'time': getMealType()
+     
     };
     Api.sendRequest(' ', context);
     setupInputBox();

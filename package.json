@@ -1,5 +1,5 @@
 {
-  "name": "food-coach",
+  "name": "ce-tone-demo",
   "description": "A simple Node.js based web app which shows how to use the Conversation API to recognize user intents.",
   "version": "0.2.1",
   "main": "server.js",

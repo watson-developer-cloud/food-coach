@@ -1,16 +1,19 @@
 ---
 declared-services:
-  conversation-service:
+  conversation-prod:
     label: conversation
-    plan: free
+    plan: standard
   tone-analyzer-standard:
     label: tone_analyzer
     plan: standard
 applications:
-- name: food-coach
+- name: ce-tone-demo
   command: npm start
   path: .
   instances: 1
-  memory: 512MB
+  services:
+  - Conversation-prod
+  - Tone Analyzer-0b
+  memory: 256MB
   env:
     NPM_CONFIG_PRODUCTION: false
