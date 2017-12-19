@@ -4,7 +4,7 @@ This application demonstrates how the Watson Conversation service can be adapted
 
 ![Demo GIF](readme_images/demo.gif?raw=true)
 
-Demo: http://food-coach.mybluemix.net/
+Demo: http://food-coach.ng.bluemix.net/
 
 For more information on the Conversation service, see the [detailed documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
@@ -31,7 +31,7 @@ If you want to experiment with the application or use it as a basis for building
 
 ## Setting up the Conversation service
 
-1. Make sure you have logged into your Bluemix account using Cloud Foundry. For more information, see [the Watson Developer Cloud documentation](https://www.ibm.com/watson/developercloud/doc/common/getting-started-cf.html).
+1. Make sure you have logged into your Bluemix account using Cloud Foundry. For more information, see [the Watson Developer Cloud documentation](https://console.bluemix.net/docs/services/watson/getting-started-cf.html).
 
 1. Create an instance of the Conversation service in the IBM cloud:
 

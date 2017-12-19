@@ -1,4 +1,6 @@
-node_modules/
-.idea/
+node_modules
+readme_images
+test
+.idea
 coverage
 npm-debug.log

@@ -17,7 +17,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "basic-auth-connect": "^1.0.0",
-    "dotenv": "^2.0.0",
+    "dotenv": "^4.0.0",
     "express": "^4.13.4",
     "extend": "^3.0.0",
     "body-parser": "^1.15.1",
@@ -32,7 +32,7 @@
     "bluebird": "^3.4.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.14.0",
+    "browser-sync": "^2.19.0",
     "casperjs": "^1.1.1",
     "eslint": "^3.7.1",
     "graceful-fs": "^4.1.6",
