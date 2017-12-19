@@ -9,17 +9,17 @@ script:
 - npm run codecov
 env:
   global:
-  - CF_APP=food-coach
-  - CF_API=https://api.ng.bluemix.net
-  - CF_ORGANIZATION=WatsonPlatformServices
-  - CF_SPACE=appgallery
+  - BX_APP=food-coach
+  - BX_API=https://api.ng.bluemix.net
+  - BX_ORGANIZATION=WatsonPlatformServices
+  - BX_SPACE=appgallery
 
-before_deploy: npm install -g https://github.com/germanattanasio/cf-blue-green
+before_deploy: npm install -g https://github.com/andresfvilla/bx-blue-green
 deploy:
   skip_cleanup: true
   provider: script
   script:
-  - cf-blue-green-travis
+  - bx-blue-green-travis
   on:
     branch: master
     repo: watson-developer-cloud/food-coach
