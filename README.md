@@ -1,12 +1,12 @@
 # Food Coach sample application [![Build Status](https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/food-coach)
 
-This application demonstrates how the Watson Conversation service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.
+This application demonstrates how the Watson Assistant (formerly Conversation) service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.
 
 ![Demo GIF](readme_images/demo.gif?raw=true)
 
 Demo: http://food-coach.ng.bluemix.net/
 
-For more information on the Conversation service, see the [detailed documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
+For more information on the Assistant service, see the [detailed documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
 
 # Deploying the application
@@ -29,11 +29,11 @@ If you want to experiment with the application or use it as a basis for building
 
    * Use GitHub to clone the repository locally
 
-## Setting up the Conversation service
+## Setting up the Assistant service
 
 1. Make sure you have logged into your Bluemix account using Cloud Foundry. For more information, see [the Watson Developer Cloud documentation](https://console.bluemix.net/docs/services/watson/getting-started-cf.html).
 
-1. Create an instance of the Conversation service in the IBM cloud:
+1. Create an instance of the Assistant service in the IBM cloud:
 
    ```bash
    cf create-service conversation <service_plan> <service_instance_name>
@@ -88,11 +88,11 @@ If you want to experiment with the application or use it as a basis for building
    cf create-service-key tone-analyzer-food-coach tone-analyzer-food-coach-key
    ```
 
-### Importing the Conversation workspace
+### Importing the Assistant workspace
 
 1. In your browser, navigate to your [Bluemix console](https://console.ng.bluemix.net).
 
-1. From the **Dashboard** tab, click the newly created Conversation service in the **Services** list.  It'll have the name you gave it in the previous step (e.g., ```<service_instance_name>```).
+1. From the **Dashboard** tab, click the newly created Assistant service in the **Services** list.  It'll have the name you gave it in the previous step (e.g., ```<service_instance_name>```).
 
    ![Screen capture of Services list](readme_images/conversation_food_coach_service.png)
 
@@ -102,7 +102,7 @@ If you want to experiment with the application or use it as a basis for building
 
    ![Screen capture of Launch tool button](readme_images/launch_tool_button.png)
 
-   The Conversation service tool opens.
+   The Assistant service tool opens.
 
 1. Click **Import** to add the food coach workspace. When prompted, specify the location of the workspace JSON file in your local copy of the application project:
 
@@ -157,7 +157,7 @@ Do the same for the Tone Analyzer service, and paste the values into the `TONE_A
 
    Leave the `.env` file open in your text editor.
 
-1. In your Bluemix console, open the Conversation service instance where you imported the workspace.
+1. In your Bluemix console, open the Assistant service instance where you imported the workspace.
 
 1. Click the menu icon in the upper right corner of the workspace tile, and then select **View details**.
 
@@ -197,11 +197,11 @@ If you want to subsequently deploy your local version of the application to the 
 
    * In the `applications` section of the `manifest.yml` file, change the `name` value to a unique name for your version of the demo application.
 
-   * In the `services` section, specify the name of the Conversation service instance you created for the demo application. If you do not remember the service name, use the `cf services` command to list all services you have created.
+   * In the `services` section, specify the name of the Assistant service instance you created for the demo application. If you do not remember the service name, use the `cf services` command to list all services you have created.
 
    * In the `env` section, add the `WORKSPACE_ID` environment variable, specifying the value from the `.env` file.
 
-   The following example shows a modified `manifest.yml` file:   
+   The following example shows a modified `manifest.yml` file:
 
    ```YAML
    ---
@@ -248,13 +248,13 @@ After you have the application deployed and running, you can explore the source 
 
    * Modify the .html file to change the appearance of the application page.
 
-   * Use the Conversation tool to train the service for new intents, or to modify the dialog flow. For more information, see the [Conversation service documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
+   * Use the Assistant tool to train the service for new intents, or to modify the dialog flow. For more information, see the [Assistant service documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
 
 # What does the Food Coach application do?
 
 The application interface is designed for chatting with a coaching bot. Based on the time of day, it asks you if you've had a particular meal (breakfast, lunch, or dinner) and what you ate for that meal.
 
-The chat interface is in the left panel of the UI, and the JSON response object returned by the Conversation service in the right panel. Your input is run against a small set of sample data trained with the following intents:
+The chat interface is in the left panel of the UI, and the JSON response object returned by the Assistant service in the right panel. Your input is run against a small set of sample data trained with the following intents:
 
     yes: acknowledgment that the specified meal was eaten
     no: the specified meal was not eaten
@@ -274,13 +274,13 @@ Below you can find some sample interactions:
 
 ![Alt text](readme_images/examples.jpeg?raw=true)
 
-In order to integrate the Tone Analyzer with the Conversation service, the following approach was taken:
-   * Intercept the user's message. Before sending it to the Conversation service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
-   * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Conversation service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
-   * Send the user input, along with the updated context object in the payload to the Conversation service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
+In order to integrate the Tone Analyzer with the Assistant service, the following approach was taken:
+   * Intercept the user's message. Before sending it to the Assistant service, invoke the Tone Analyzer Service. See the call to `toneDetection.invokeToneAsync` in the `invokeToneConversation` function in [app.js](./app.js).
+   * Parse the JSON response object from the Tone Analyzer Service, and add appropriate variables to the context object of the JSON payload to be sent to the Assistant service. See the `updateUserTone` function in [tone_detection.js](./addons/tone_detection.js).
+   * Send the user input, along with the updated context object in the payload to the Assistant service. See the call to `conversation.message` in the `invokeToneConversation` function in [app.js](./app.js).
 
 
-You can see the JSON response object from the Conversation service in the right hand panel.
+You can see the JSON response object from the Assistant service in the right hand panel.
 
 ![Alt text](readme_images/tone_context.jpeg?raw=true)
 
@@ -312,5 +312,3 @@ If you encounter a problem, you can check the logs for more information. To see 
 
   Find more open source projects on the
   [IBM Github Page](http://ibm.github.io/).
-
-
