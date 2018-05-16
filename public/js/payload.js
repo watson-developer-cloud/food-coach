@@ -34,7 +34,7 @@ var PayloadPanel = (function() {
   // full width (regardless of screen size)
   function togglePanel(event, element) {
     var payloadColumn = document
-        .querySelector(settings.selectors.payloadColumn);
+      .querySelector(settings.selectors.payloadColumn);
     if (element.classList.contains('full')) {
       element.classList.remove('full');
       payloadColumn.classList.remove('full');
@@ -68,8 +68,8 @@ var PayloadPanel = (function() {
       // Create new payload DOM element
       var payloadDiv = buildPayloadDomElement(isRequest);
       var payloadElement = document
-          .querySelector(isRequest ? settings.selectors.payloadRequest
-              : settings.selectors.payloadResponse);
+        .querySelector(isRequest ? settings.selectors.payloadRequest
+          : settings.selectors.payloadResponse);
       // Clear out payload holder element
       while (payloadElement.lastChild) {
         payloadElement.removeChild(payloadElement.lastChild);
@@ -80,7 +80,7 @@ var PayloadPanel = (function() {
       // exist)
       // or to hide (otherwise)
       var payloadInitial = document
-          .querySelector(settings.selectors.payloadInitial);
+        .querySelector(settings.selectors.payloadInitial);
       if (Api.getRequestPayload() || Api.getResponsePayload()) {
         payloadInitial.classList.add('hide');
       }
@@ -103,7 +103,7 @@ var PayloadPanel = (function() {
   // Constructs new DOM element to use in displaying the payload
   function buildPayloadDomElement(isRequest) {
     var payloadPrettyString = jsonPrettyPrint(isRequest ? Api
-        .getRequestPayload() : Api.getResponsePayload());
+      .getRequestPayload() : Api.getResponsePayload());
 
     var payloadJson = {
       'tagName': 'div',
@@ -146,25 +146,25 @@ var PayloadPanel = (function() {
     var convert = JSON.stringify(json, null, 2);
 
     convert = convert.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
-        />/g, '&gt;');
+      />/g, '&gt;');
     convert = convert
-        .replace(
-            /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-            function(match) {
-              var cls = 'number';
-              if (/^"/.test(match)) {
-                if (/:$/.test(match)) {
-                  cls = 'key';
-                } else {
-                  cls = 'string';
-                }
-              } else if (/true|false/.test(match)) {
-                cls = 'boolean';
-              } else if (/null/.test(match)) {
-                cls = 'null';
-              }
-              return '<span class="' + cls + '">' + match + '</span>';
-            });
+      .replace(
+        /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, // eslint-disable-line no-useless-escape
+        function(match) {
+          var cls = 'number';
+          if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+              cls = 'key';
+            } else {
+              cls = 'string';
+            }
+          } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+          } else if (/null/.test(match)) {
+            cls = 'null';
+          }
+          return '<span class="' + cls + '">' + match + '</span>';
+        });
     return convert;
   }
 

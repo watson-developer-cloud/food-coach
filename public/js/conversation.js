@@ -111,16 +111,16 @@ var ConversationPanel = (function() {
         var txtNode = document.createTextNode(input.value);
         [ 'font-size', 'font-style', 'font-weight', 'font-family',
           'line-height', 'text-transform', 'letter-spacing' ]
-            .forEach(function(index) {
-              dummy.style[index] = window.getComputedStyle(input, null)
-                  .getPropertyValue(index);
-            });
+          .forEach(function(index) {
+            dummy.style[index] = window.getComputedStyle(input, null)
+              .getPropertyValue(index);
+          });
         dummy.textContent = txtNode.textContent;
 
         var padding = 0;
         var htmlElem = document.getElementsByTagName('html')[0];
         var currentFontSize = parseInt(window.getComputedStyle(htmlElem, null)
-            .getPropertyValue('font-size'), 10);
+          .getPropertyValue('font-size'), 10);
         if (currentFontSize) {
           padding = Math.floor((currentFontSize - minFontSize)
               / (maxFontSize - minFontSize) * (maxPadding - minPadding)
@@ -154,9 +154,8 @@ var ConversationPanel = (function() {
       var messageDivs = buildMessageDomElements(newPayload, isUser);
       var chatBoxElement = document.querySelector(settings.selectors.chatBox);
       var previousLatest = chatBoxElement
-          .querySelectorAll((isUser ? settings.selectors.fromUser
-              : settings.selectors.fromWatson)
-              + settings.selectors.latest);
+        .querySelectorAll((isUser ? settings.selectors.fromUser
+          : settings.selectors.fromWatson) + settings.selectors.latest);
       // Previous "latest" message is no longer the most recent
       if (previousLatest) {
         Common.listForEach(previousLatest, function(element) {
@@ -213,7 +212,7 @@ var ConversationPanel = (function() {
             'tagName': 'div',
             // AW - change colour of watson tag
             'classNames': [ (isUser ? 'from-user' : 'from-watson'), 'latest',
-                ((messageArray.length === 0) ? emotionClass : 'sub') ],
+              ((messageArray.length === 0) ? emotionClass : 'sub') ],
             'children': [ {
               // <div class='message-inner'>
               'tagName': 'div',
