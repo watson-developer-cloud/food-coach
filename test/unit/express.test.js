@@ -16,19 +16,22 @@
 
 'use strict';
 
-if (!process.env.CLOUDANT_URL) {
+require('dotenv').config({silent: true});
+
+var describeIfCredentials = describe;
+if (!process.env.CLOUDANT_URL || !process.env.CONVERSATION_USERNAME) {
   console.log('Skipping unit test because CLOUDANT_URL is null');
-  return;
+  describeIfCredentials = describe.skip;
 }
 
-var app = require('../../app');
-var bodyParser = require('body-parser');
-var request = require('supertest');
+describeIfCredentials('Basic API tests', function () {
+  var app = require('../../app');
+  var bodyParser = require('body-parser');
+  var request = require('supertest');
 
-app.use(bodyParser.json());
+  app.use(bodyParser.json());
 
-describe('Basic API tests', function() {
-  it('GET to / should load the home page', function(done) {
-    request(app).get('/').expect(200, done);
+  it('GET to / should load the home page', function () {
+    return request(app).get('/').expect(200);
   });
 });
