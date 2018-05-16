@@ -55,7 +55,7 @@
     "wrench": "^1.5.9"
   },
   "engine": {
-    "node": ">= 4.2.4"
+    "node": ">= 8.4.0"
   },
   "directories": {
     "test": "test"
