@@ -54,7 +54,7 @@
     "supertest": "^2.0.0",
     "wrench": "^1.5.9"
   },
-  "engine": {
+  "engines": {
     "node": ">= 8.4.0"
   },
   "directories": {
