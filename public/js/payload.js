@@ -108,31 +108,31 @@ var PayloadPanel = (function() {
     var payloadJson = {
       'tagName': 'div',
       'children': [
-          {
-            // <div class='header-text'>
-            'tagName': 'div',
-            'text': isRequest ? 'User input (request payload)'
-                : 'Response from Watson Conversation (response payload)',
-            'classNames': [ 'header-text' ]
-          },
-          {
-            // <div class='code-line responsive-columns-wrapper'>
-            'tagName': 'div',
-            'classNames': [ 'code-line', 'responsive-columns-wrapper' ],
-            'children': [
-                {
-                  // <div class='line-numbers'>
-                  'tagName': 'pre',
-                  'text': createLineNumberString((payloadPrettyString
-                      .match(/\n/g) || []).length + 1),
-                  'classNames': [ 'line-numbers' ]
-                }, {
-                  // <div class='payload-text responsive-column'>
-                  'tagName': 'pre',
-                  'classNames': [ 'payload-text', 'responsive-column' ],
-                  'html': payloadPrettyString
-                } ]
-          } ]
+        {
+          // <div class='header-text'>
+          'tagName': 'div',
+          'text': isRequest ? 'User input (request payload)'
+            : 'Response from Watson Conversation (response payload)',
+          'classNames': [ 'header-text' ]
+        },
+        {
+          // <div class='code-line responsive-columns-wrapper'>
+          'tagName': 'div',
+          'classNames': [ 'code-line', 'responsive-columns-wrapper' ],
+          'children': [
+            {
+              // <div class='line-numbers'>
+              'tagName': 'pre',
+              'text': createLineNumberString((payloadPrettyString
+                .match(/\n/g) || []).length + 1),
+              'classNames': [ 'line-numbers' ]
+            }, {
+              // <div class='payload-text responsive-column'>
+              'tagName': 'pre',
+              'classNames': [ 'payload-text', 'responsive-column' ],
+              'html': payloadPrettyString
+            } ]
+        } ]
     };
 
     return Common.buildDomElement(payloadJson);

@@ -26,7 +26,7 @@ var ConversationPanel = (function() {
   /**
    * getMealType determines what meal a user of the app might have eaten most
    * recently. It uses the client's browser time.
-   * 
+   *
    * @returns {string} a string indicating the meal the user most likely ate
    *          recently - breakfast, lunch, dinner
    */
@@ -110,7 +110,7 @@ var ConversationPanel = (function() {
         input.classList.add('underline');
         var txtNode = document.createTextNode(input.value);
         [ 'font-size', 'font-style', 'font-weight', 'font-family',
-            'line-height', 'text-transform', 'letter-spacing' ]
+          'line-height', 'text-transform', 'letter-spacing' ]
             .forEach(function(index) {
               dummy.style[index] = window.getComputedStyle(input, null)
                   .getPropertyValue(index);
@@ -195,7 +195,7 @@ var ConversationPanel = (function() {
   // Constructs new DOM element from a message payload
   function buildMessageDomElements(newPayload, isUser) {
     var textArray = isUser ? newPayload.input.text : newPayload.output.text;
-    emotionClass = 'top';
+    var emotionClass = 'top';
 
     if (Object.prototype.toString.call(textArray) !== '[object Array]') {
       textArray = [ textArray ];
