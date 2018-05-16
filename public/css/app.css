@@ -429,3 +429,7 @@ html{
   font-weight: normal;
   font-style: normal;
 }
+
+.gdprDescription {
+  font-size: 14px;
+}
