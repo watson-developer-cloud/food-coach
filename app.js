@@ -20,8 +20,7 @@ var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var watson = require('watson-developer-cloud');
 
-var toneDetection = require('./addons/tone_detection.js'); // required for tone
-                                                            // detection
+var toneDetection = require('./addons/tone_detection.js'); // required for tone detection
 var maintainToneHistory = false;
 
 // The following requires are needed for logging purposes

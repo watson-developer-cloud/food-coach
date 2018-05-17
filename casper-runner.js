@@ -23,7 +23,7 @@ require('dotenv').config({silent: true});
 
 if (!fs.existsSync('./.env')) {
   console.log('Skip integration tests since .env does not exist');
-  return
+  return;
 }
 
 var server = require('./server');
