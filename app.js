@@ -18,10 +18,10 @@
 
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
-var watson = require('watson-developer-cloud');
+var AssistantV1 = require('watson-developer-cloud/assistant/v1');
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
-var toneDetection = require('./addons/tone_detection.js'); // required for tone
-                                                            // detection
+var toneDetection = require('./addons/tone_detection.js'); // required for tone detection
 var maintainToneHistory = false;
 
 // The following requires are needed for logging purposes
@@ -42,19 +42,18 @@ cloudantUrl = cloudantUrl || process.env.CLOUDANT_URL; // || '<cloudant_url>';
 var logs = null;
 var app = express();
 
-// Bootstrap application settings
 app.use(express.static('./public')); // load UI from public folder
 app.use(bodyParser.json());
 
-
-// Instantiate the Watson Conversation Service as per WDC 2.2.0
-var conversation = new watson.ConversationV1({
-  version_date: '2016-09-20'
+// Bootstrap application settings
+// Instantiate the Watson AssistantV1 Service as per WDC 2.2.0
+var assistant = new AssistantV1({
+  version: '2017-05-26'
 });
 
 // Instantiate the Watson Tone Analyzer Service as per WDC 2.2.0
-var toneAnalyzer = new watson.ToneAnalyzerV3({
-  version_date: '2016-05-19'
+var toneAnalyzer = new ToneAnalyzerV3({
+  version: '2016-05-19'
 });
 
 // Endpoint to be called from the client side
@@ -63,7 +62,7 @@ app.post('/api/message', function(req, res) {
   if (!workspace || workspace === '<workspace-id>') {
     return res.json({
       'output': {
-        'text': 'The app has not been configured with a <b>WORKSPACE_ID</b> environment variable. Please refer to the ' + '<a href="https://github.com/watson-developer-cloud/conversation-simple">README</a> documentation on how to set this variable. <br>' + 'Once a workspace has been defined the intents may be imported from ' + '<a href="https://github.com/watson-developer-cloud/conversation-simple/blob/master/training/car_workspace.json">here</a> in order to get a working application.'
+        'text': 'The app has not been configured with a <b>WORKSPACE_ID</b> environment variable. Please refer to the ' + '<a href="https://github.com/watson-developer-cloud/assistant-simple">README</a> documentation on how to set this variable. <br>' + 'Once a workspace has been defined the intents may be imported from ' + '<a href="https://github.com/watson-developer-cloud/assistant-simple/blob/master/training/car_workspace.json">here</a> in order to get a working application.'
       }
     });
   }
@@ -82,12 +81,12 @@ app.post('/api/message', function(req, res) {
     } else {
 
       // Add the user object (containing tone) to the context object for
-      // Conversation
+      // Assistant
       payload.context = toneDetection.initUser();
     }
 
 
-    // Invoke the tone-aware call to the Conversation Service
+    // Invoke the tone-aware call to the Assistant Service
     invokeToneConversation(payload, res);
   }
 });
@@ -96,9 +95,9 @@ app.post('/api/message', function(req, res) {
  * Updates the response text using the intent confidence
  *
  * @param {Object}
- *                input The request to the Conversation service
+ *                input The request to the Assistant service
  * @param {Object}
- *                response The response from the Conversation service
+ *                response The response from the Assistant service
  * @return {Object} The response with the updated message
  */
 function updateMessage(input, response) {
@@ -147,15 +146,15 @@ function updateMessage(input, response) {
 
 /**
  * @author April Webster
- * @returns {Object} return response from conversation service
+ * @returns {Object} return response from Assistant service
  *          invokeToneConversation calls the invokeToneAsync function to get the
  *          tone information for the user's input text (input.text in the
  *          payload json object), adds/updates the user's tone in the payload's
- *          context, and sends the payload to the conversation service to get a
+ *          context, and sends the payload to the Assistant service to get a
  *          response which is printed to screen.
  * @param {Json}
  *                payload a json object containing the basic information needed
- *                to converse with the Conversation Service's message endpoint.
+ *                to converse with the Assistant Service's message endpoint.
  * @param {Object}
  *                res response object
  *
@@ -163,7 +162,7 @@ function updateMessage(input, response) {
 function invokeToneConversation(payload, res) {
   toneDetection.invokeToneAsync(payload, toneAnalyzer).then(function(tone) {
     toneDetection.updateUserTone(payload, tone, maintainToneHistory);
-    conversation.message(payload, function(err, data) {
+    assistant.message(payload, function(err, data) {
       var returnObject = null;
       if (err) {
         console.error(JSON.stringify(err, null, 2));

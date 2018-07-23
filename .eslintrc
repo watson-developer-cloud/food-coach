@@ -6,8 +6,8 @@
     "consistent-return": 0
   },
   "globals": {
-    describe: true,
-    it: true,
+    "describe": true,
+    "it": true,
     "casper": false
   },
   "env": {
