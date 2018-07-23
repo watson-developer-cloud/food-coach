@@ -15,9 +15,6 @@ div {
   line-height: 1.25rem;
 }
 
-.disclaimer-message .base-h6 {
-  padding: 5px;
-}
 
 #view-change-button {
   display: inline-block;
@@ -48,7 +45,7 @@ div {
 }
 
 #contentParent {
-  height: 92%;
+  height: 100%;
 }
 
 .responsive-columns-wrapper {
@@ -72,19 +69,19 @@ div {
 }
 
 .chat-column {
-  height: 85%;
+  height: 93%;
   padding: 0.9375rem 0 0.625rem 0;
   margin: auto;
   text-align: left;
   max-width: 25rem;
-  min-width: 9.375rem;
+  min-width: 10rem;
 }
 
 #scrollingChat {
   margin: 0.75rem;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100% - 4rem);
+  height: calc(100% - 10rem);
 }
 
 .message-inner {
@@ -432,4 +429,11 @@ html{
   url('../fonts/ibm-glyphs.svg?1b8643#ibm-glyph') format('svg');
   font-weight: normal;
   font-style: normal;
+}
+
+.gdprDescription {
+  font-size: 12px;
+  color: gray;
+  max-width: 90%;
+  margin: auto;
 }

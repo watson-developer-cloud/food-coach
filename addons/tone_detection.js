@@ -1,12 +1,12 @@
 /**
- * Copyright 2015 IBM Corp. All Rights Reserved.
- * 
+ * Copyright 2018 IBM Corp. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -51,7 +51,7 @@ module.exports = {
 /**
  * invokeToneAsync is an asynchronous function that calls the Tone Analyzer
  * service and returns a Promise
- * 
+ *
  * @param {Json}
  *                conversationPayload json object returned by the Watson
  *                Conversation Service
@@ -81,7 +81,7 @@ function invokeToneAsync(conversationPayload, toneAnalyzer) {
  * language and social tones, and identify the meaningful tones (i.e., those
  * tones that meet the specified thresholds). The conversationPayload json
  * object is updated to include these tones.
- * 
+ *
  * @param {Json}
  *                conversationPayload json object returned by the Watson
  *                Conversation Service
@@ -134,7 +134,7 @@ function updateUserTone(conversationPayload, toneAnalyzerPayload, maintainHistor
 /**
  * initToneContext initializes a user object containing tone data (from the
  * Watson Tone Analyzer)
- * 
+ *
  * @returns {Json} user json object with the emotion, language and social tones.
  *          The current tone identifies the tone for a specific conversation
  *          turn, and the history provides the conversation for all tones up to
@@ -160,7 +160,7 @@ function initUser() {
  * updateEmotionTone updates the user emotion tone with the primary emotion -
  * the emotion tone that has a score greater than or equal to the
  * EMOTION_SCORE_THRESHOLD; otherwise primary emotion will be 'neutral'
- * 
+ *
  * @param {Json}
  *                user a json object representing user information (tone) to be
  *                used in conversing with the Conversation Service
@@ -204,7 +204,7 @@ function updateEmotionTone(user, emotionTone, maintainHistory) {
 /**
  * updateLanguageTone updates the user with the language tones interpreted based
  * on the specified thresholds
- * 
+ *
  * @param {Json}
  *                user a json object representing user information (tone) to be
  *                used in conversing with the Conversation Service
@@ -247,7 +247,7 @@ function updateLanguageTone(user, languageTone, maintainHistory) {
 /**
  * updateSocialTone updates the user with the social tones interpreted based on
  * the specified thresholds
- * 
+ *
  * @param {Json}
  *                user a json object representing user information (tone) to be
  *                used in conversing with the Conversation Service
