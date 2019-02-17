@@ -19,6 +19,8 @@ For more information on the Tone Analyzer Service, see the [detailed documentati
 
 ## Deploying the application
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/watson-developer-cloud/food-coach.svg)](https://greenkeeper.io/)
+
 If you want to experiment with the application or use it as a basis for building your own application, you need to deploy it in your own environment. You can then explore the files, make changes, and see how those changes affect the running application. After making modifications, you can deploy your modified version of the application to IBM Cloud.
 
 ## Prerequisites
