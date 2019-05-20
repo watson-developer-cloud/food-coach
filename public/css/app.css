@@ -69,7 +69,9 @@ div {
 }
 
 .chat-column {
-  height: 93%;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
   padding: 0.9375rem 0 0.625rem 0;
   margin: auto;
   text-align: left;
@@ -78,10 +80,10 @@ div {
 }
 
 #scrollingChat {
+  flex: 1;
   margin: 0.75rem;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100% - 10rem);
 }
 
 .message-inner {
