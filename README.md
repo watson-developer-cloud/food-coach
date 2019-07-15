@@ -12,8 +12,6 @@
 
 ![Demo GIF](readme_images/demo.gif?raw=true)
 
-Demo: http://food-coach.ng.bluemix.net/
-
 For more information on the Assistant service, see the [detailed documentation](https://console.bluemix.net/docs/services/conversation/index.html#about).
 For more information on the Tone Analyzer Service, see the [detailed documentation](http://www.ibm.com/watson/developercloud/tone-analyzer.html).
 
