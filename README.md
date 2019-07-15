@@ -1,5 +1,5 @@
 <h1 align="center" style="border-bottom: none;">🚀 Food Coach Demo</h1>
-<h3 align="center">This application demonstrates how the Watson Assistant (formerly Conversation) service can be adapted to use Tone Analyzer's tone along with intents and entities in a simple chat interface.</h3>
+<h3 align="center">DEPRECATED: this repo is no longer actively maintained. It can still be used as reference, but may contain outdated or unpatched code.</h3>
 <p align="center">
   <a href="http://travis-ci.org/watson-developer-cloud/food-coach">
     <img alt="Travis" src="https://travis-ci.org/watson-developer-cloud/food-coach.svg?branch=master">
